@@ -1,0 +1,25 @@
+Bearer Authentication
+Bearer authorization method is a much simpler way of sending API requests.
+It makes the
+hash
+parameter completely obsolete.
+You can find your bearer token under
+Account Owner Details
+.
+Please make sure you are using
+https://
+protocol, which provides encryption for your requests.
+Example
+curl
+request:
+curl \
+-H "Authorization: Bearer BEARER_TOKEN" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{"clientId": "CLIENT_ID"}' \
+"https://app.gatherup.com/api/test"
+Please replace
+BEARER_TOKEN
+and
+CLIENT_ID
+with your own parameters.

@@ -1,0 +1,72 @@
+/business/online-review-link/add
+Add new online review link.
+Parameters
+Name
+Type
+Required
+Example
+Description
+businessId
+integer
+yes
+6418
+Business id.
+clientId
+string(40)
+yes
+04f78...9f9f3
+Client id is a unique user identifier provided by GatherUp.
+hash
+string(64)
+yes
+bd13a40...303f3c5
+Hash is a digital request signature. Learn how to generate hash
+here
+.
+link
+string
+yes
+http://app.gatherup.com
+Online review link URL.
+type
+string(google, yelp, citysearch, facebook, ...)
+yes
+google
+Online review link type.
+Request
+POST
+https://app.gatherup.com/api/business/online-review-link/add
+[Content-Type: application/json]
+{
+"businessId": 6418,
+"clientId": "627d5e234e1a2f503c9e12262cf313d693575895",
+"hash": "b98340caf25c00be59f5bb5405ca8f358edf22c15a4f8527785af047e541f857",
+"link": "https://google.com",
+"type": "google"
+}
+Response
+{
+"errorCode": 0,
+"errorMessage": "Success"
+}
+Errors
+errorCode
+errorMessage
+-1
+Unknown error
+1
+Invalid hash sign
+2
+Invalid clientId
+3
+Server error - please contact support
+5
+This user cannot manage selected business
+27
+Social link is invalid
+28
+Unsupported social link type
+39
+Social link with selected type already exist
+40
+Unable to add online review link

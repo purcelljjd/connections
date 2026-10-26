@@ -1,0 +1,58 @@
+/business/types
+Get business types.
+Parameters
+Name
+Type
+Required
+Example
+Description
+clientId
+string(40)
+yes
+04f78...9f9f3
+Client id is a unique user identifier provided by GatherUp.
+hash
+string(64)
+yes
+bd13a40...303f3c5
+Hash is a digital request signature. Learn how to generate hash
+here
+.
+search
+string
+no
+search string
+Search value
+Request
+POST
+https://app.gatherup.com/api/business/types
+[Content-Type: application/json]
+{
+"clientId": "627d5e234e1a2f503c9e12262cf313d693575895",
+"hash": "b98340caf25c00be59f5bb5405ca8f358edf22c15a4f8527785af047e541f857"
+"search":"smith"
+}
+Response
+{
+"0": "Blacksmith",
+"1": "Coppersmith",
+"2": "Emergency Locksmith Service",
+"3": "Goldsmith",
+"4": "Horseshoe Smith",
+"5": "Locksmith",
+"6": "Locksmith Service",
+"7": "Silversmith",
+"errorCode": 0,
+"errorMessage": "Success"
+}
+Errors
+errorCode
+errorMessage
+-1
+Unknown error
+1
+Invalid hash sign
+2
+Invalid clientId
+3
+Server error - please contact support

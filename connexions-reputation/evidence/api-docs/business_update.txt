@@ -1,0 +1,214 @@
+/business/update
+Update existing business.
+emailLogo
+:
+Image information for Company Logo
+(What is the Company Logo?
+See here:
+https://help.gatherup.com/wp-content/uploads/2014/10/logo-uploader-option.png
+)
+We will resize your image for you.
+However for best results we recommend sizing the image. The max width is 260px.
+The following formats are supported: PNG, JPEG & GIF.
+feedbackBanner
+:
+Image information for Feedback Page Banner
+(What is the Feedback Page Banner?
+See here:
+https://help.gatherup.com/wp-content/uploads/2014/12/feedback-page-banner-example.jpg
+)
+We will resize your image for you. However for best results we recommend sizing the image correctly.
+The minimum width is 760px.
+The banner can be as tall or as narrow as you want.
+A good size is 250px in height.
+The following formats are supported: PNG, JPEG & GIF
+emailImage
+:
+Image information for replacing the Google Map with a Logo or Image
+(What is the Google Maps image replacement?
+See here:
+https://help.gatherup.com/wp-content/uploads/2014/05/replace-google-maps-with-image.jpg
+)
+We will resize your image for you.
+However for best results we recommend sizing the image correctly.
+The ideal size is 160px by 160px.
+The following formats are supported: PNG, JPEG & GIF
+Parameters
+Name
+Type
+Required
+Example
+Description
+automatedEmailsPerDay
+integer
+no
+5
+Automatic emails per day. 0 = manual mode.
+businessId
+integer
+yes
+376
+Business id.
+businessName
+string
+no
+Peach Trees Intl.
+Business name.
+businessOwnerEmail
+string(email)
+no
+john.smith@abc-company.com
+User email.
+businessOwnerFirstName
+string
+no
+John
+User first name.
+businessOwnerLastName
+string
+no
+Smith
+User last name.
+businessType
+string
+yes
+Insurance Agency
+Google business type.
+city
+string
+no
+Haiku
+Business city.
+clientId
+string(40)
+yes
+04f78...9f9f3
+Client id is a unique user identifier provided by GatherUp.
+country
+string
+no
+US
+Business country code or full name.
+customField
+string
+no
+1234
+Custom ID (whitelabeled accounts only).
+emailImage
+string
+no
+http://domain.com/image-url
+Email Picture.
+emailLogo
+string
+no
+http://domain.com/image-url
+Company Logo.
+feedbackBanner
+string
+no
+http://domain.com/image-url
+Feedback Page Banner.
+hash
+string(64)
+yes
+bd13a40...303f3c5
+Hash is a digital request signature. Learn how to generate hash
+here
+.
+organisationType
+string
+no
+company
+Organisation type: company, corporation, non profit, school, office, practice, agency, church, restaurant, event, firm, store, dealership
+phone
+string
+no
+808-333-3334
+Mobile phone number.
+state
+string
+no
+HI
+Business state code or full name.
+streetAddress
+string
+no
+4150 Hana Hwy
+Business street address.
+websiteUrl
+string
+no
+https://www.peachtreeintl.abc-company.com
+Business website url.
+zip
+string
+no
+96708
+Business zip code.
+feedbackThreshold
+integer
+no
+4
+Defines the NPS score threshold for feedbacks received to be automatically approved to show on the testimonials widget.
+pageThreshold
+integer
+no
+3
+Defines the NPS score of what is considered positive or negative feedback. For example if set to 5 - any customer leaving an NPS score of 5 or above will be shown the positive feedback page.
+language
+string(2)
+no
+de, en, es, fr, nl, no, pl, pt, sv, it
+Business language
+Request
+POST
+https://app.gatherup.com/api/business/update
+[Content-Type: application/json]
+{
+"businessId":"376",
+"businessName":"Peach Trees Intl.",
+"businessOwnerEmail":"john.smith@abc-company.com",
+"businessOwnerFirstName":"John",
+"businessOwnerLastName":"Smith",
+"businessType":"Insurance Agency",
+"city":"Haiku",
+"clientId":"80338307b78b8d84c8b4d40e63e235cc312fcebe",
+"country":"US",
+"customField":"1234",
+"hash":"3b288032e87d12c08c95dc8a96128f19ec1ec207af383328413d18f9e0aaf1fd",
+"organisationType":"company",
+"phone":"808-333-3334",
+"state":"HI",
+"streetAddress":"4150 Hana Hwy",
+"websiteUrl":"https:\/\/www.peachtreeintl.abc-company.com",
+"zip":"96708",
+"sendTo":"0,1,2",
+"whichAlerts":"0",
+"feedbackThreshold":"4",
+"pageThreshold":"3"
+}
+Response
+{
+"errorCode":0,
+"errorMessage":"Success"
+}
+Errors
+errorCode
+errorMessage
+-1
+Unknown error
+1
+Invalid hash sign
+2
+Invalid clientId
+3
+Server error - please contact support
+5
+This user cannot manage selected business
+14
+Invalid business name
+25
+Business does not exist
+29
+Invalid business type
