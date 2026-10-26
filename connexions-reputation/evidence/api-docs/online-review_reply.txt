@@ -1,0 +1,67 @@
+/online-review/reply
+Add the response to online review. Feature works for reviews from google which are authorization by GMB.
+Parameters
+Name
+Type
+Required
+Example
+Description
+clientId
+string(40)
+yes
+04f78...9f9f3
+Client id is a unique user identifier provided by GatherUp.
+hash
+string(64)
+yes
+bd13a40...303f3c5
+Hash is a digital request signature. Learn how to generate hash
+here
+.
+reviewId
+integer
+yes
+374875474
+Review ID
+content
+string
+yes
+Thank you!
+The content of the comment.
+Request
+POST
+https://app.gatherup.com/api/online-review/reply
+[Content-Type: application/json]
+{
+"clientId":"80338307b78b8d84c8b4d40e63e235cc312fcebe",
+"hash":"3b288032e87d12c08c95dc8a96128f19ec1ec207af383328413d18f9e0aaf1fd",
+"reviewId": 3573219,
+"content": "Thank you, Mike!!",
+}
+Response
+{
+"errorCode":0,
+"errorMessage":"Success"
+"reviewId": 3573219
+}
+Errors
+errorCode
+errorMessage
+-1
+Unknown error
+1
+Invalid hash sign
+2
+Invalid clientId
+3
+Server error - please contact support
+73
+Required fields are empty
+74
+Review does not exist
+75
+This review does not meet the requirements
+76
+You do not have permission
+77
+OAuthConnection with GMB has been lost

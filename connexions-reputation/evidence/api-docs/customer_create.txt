@@ -1,0 +1,151 @@
+/customer/create
+Create a new customer under one of your businesses.
+feedbackRequestErrorCode
+and
+feedbackRequestErrorMessage
+will be returned only if the
+sendFeedbackRequest
+parameter is present and set to
+1
+.
+Parameters
+Name
+Type
+Required
+Example
+Description
+businessId
+integer
+yes
+376
+Business id.
+clientId
+string(40)
+yes
+04f78...9f9f3
+Client id is a unique user identifier provided by GatherUp.
+customerCustomId
+string
+no
+123
+Customer custom id.
+customerEmail
+string(email)
+yes
+john.smith@app.gatherup.com
+Customer email address.
+This field is required for basic plan accounts.
+For higher plans there is email or phone number required.
+customerFirstName
+string
+yes
+John
+Customer first name.
+customerJobId
+string
+no
+123
+Customer job id.
+customerLastName
+string
+yes
+Smith
+Customer last name.
+customerPhone
+string
+no
+5555555555
+Customer mobile phone.
+customerTags
+string
+no
+brakes,tires
+Customer tags separated by comma (max length of one tag = 50 chars).
+delayFeedbackRequest
+integer
+no
+0
+0 will send feedback immediately -> if "sendFeedbackRequest" parameter is set to 1.
+If you set delayFeedbackRequest to anything over 0, it will delay that many hours before the feedback request is sent.
+Important the Communication Preference in the customer dashboard must be set to "Manual Mode". The "delayFeedbackRequest" parameter will be ignored if set to"Automatic Mode".
+customerPreference
+string(sms|email)
+no
+email
+Customer communication preference.
+preferenceChecking
+integer(0,1)
+no
+1 (default)
+If the parameter is set to 0 then Customer Preference is set according to the data provided (`customerEmail` or `customerPhone`) regardless of the `customerPreference` field value.
+sendFeedbackRequest
+integer(0,1)
+no
+1
+Send feedback request email to the customer right away.
+hash
+string(64)
+yes
+bd13a40...303f3c5
+Hash is a digital request signature. Learn how to generate hash
+here
+.
+Request
+POST
+https://app.gatherup.com/api/customer/create
+[Content-Type: application/json]
+{
+"businessId": 376,
+"clientId": "04f78076fbfc66940169d2199af7c6698019f9f3",
+"customerEmail": "john.smith@app.gatherup.com",
+"customerFirstName": "John",
+"customerLastName": "Smith",
+"customerPhone": "5555555555",
+"hash": "67fbca027648a3caf08e47ca685d772aa2d92fb526b8b6e91d74286301c99988",
+"sendFeedbackRequest": 1
+}
+Response
+{
+"feedbackRequestErrorCode": 0,
+"feedbackRequestErrorMessage": "Success",
+"customerId": 12345,
+"errorCode": 0,
+"errorMessage": "Success"
+}
+Errors
+errorCode
+errorMessage
+-1
+Unknown error
+1
+Invalid hash sign
+2
+Invalid clientId
+3
+Server error - please contact support
+5
+This user cannot manage selected business
+6
+Invalid businessId
+7
+Invalid customer first name
+8
+Invalid customer last name
+9
+Invalid customer email / Invalid customer phone number
+11
+Unable to send feedback request to this customer
+12
+Daily requests limit (100) exceeded
+48
+Customer with this email already exists
+52
+Please enter a valid email address or a valid phone number
+53
+Customer with this phone number already exists
+54
+Message not sent - SMS limit exceeded
+99
+Invalid customer phone number, number removed and customer added.
+100
+Invalid customer phone number, sms preferred customer not added.
