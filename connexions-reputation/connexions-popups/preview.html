@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Popup preview</title>
+<style>
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f1f5f9;color:#334155}
+  .site-nav{display:flex;align-items:center;gap:24px;padding:18px 28px;background:#fff;border-bottom:1px solid #e2e8f0}
+  .logo{width:110px;height:14px;border-radius:7px;background:#cbd5e1}
+  .nav-item{width:56px;height:10px;border-radius:5px;background:#e2e8f0}
+  .hero{padding:56px 28px;max-width:880px;margin:0 auto}
+  .bar{height:14px;border-radius:7px;background:#dbe3ec;margin:12px 0}
+  .bar.h{height:28px;width:60%;background:#cbd5e1}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:32px}
+  .card{height:140px;border-radius:12px;background:#fff;border:1px solid #e2e8f0}
+</style>
+</head>
+<body>
+  <div class="site-nav"><div class="logo"></div><div class="nav-item"></div><div class="nav-item"></div><div class="nav-item"></div></div>
+  <div class="hero">
+    <div class="bar h"></div><div class="bar" style="width:80%"></div><div class="bar" style="width:70%"></div>
+    <div class="grid"><div class="card"></div><div class="card"></div><div class="card"></div></div>
+    <div class="bar" style="width:90%;margin-top:32px"></div><div class="bar" style="width:75%"></div>
+  </div>
+  <script>window.CxPopupsNoObserve = true;</script>
+  <script src="runtime/connexions-popup.js"></script>
+  <script>
+    // The builder posts the working config here; the real runtime renders it, so preview == production.
+    var lastCfg = null;
+    window.addEventListener('message', function (e) {
+      var m = e.data || {};
+      if (m.type !== 'cxp-preview' || !m.config) return;
+      lastCfg = m.config;
+      CxPopups.preview(m.config, {
+        animate: !!m.animate,
+        onClose: function () { parent.postMessage({ type: 'cxp-preview-closed' }, '*'); }
+      });
+    });
+    parent.postMessage({ type: 'cxp-preview-ready' }, '*');
+  </script>
+</body>
+</html>
